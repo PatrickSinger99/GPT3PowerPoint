@@ -3,7 +3,7 @@ from gpt import GPT
 from gpt import Example
 
 # Openai key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=50)
