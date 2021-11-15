@@ -7,10 +7,10 @@ import os
 import shutil
 
 # Input
-prompt = ""
+prompt = "An airplane or aeroplane (informally plane) is a fixed-wing aircraft that is propelled forward by thrust from a jet engine, propeller, or rocket engine. Airplanes come in a variety of sizes, shapes, and wing configurations. The broad spectrum of uses for airplanes includes recreation, transportation of goods and people, military, and research. Worldwide, commercial aviation transports more than four billion passengers annually on airliners[1] and transports more than 200 billion tonne-kilometers[2] of cargo annually, which is less than 1% of the world's cargo movement.[3] Most airplanes are flown by a pilot on board the aircraft, but some are designed to be remotely or computer-controlled such as drones."
 
 # Openai key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=50)
@@ -60,22 +60,25 @@ gpt_sum.add_example(Example("A blockchain is a growing list of records, called b
                             "The data in any given block cannot be altered once recorded."
                             ))
 
-# output = gpt_sum.submit_request(prompt)
-# output = output.choices[0].text
+output = gpt_sum.submit_request(prompt)
+output = output.choices[0].text[8:]
+print(output)
+"""
 output = "A car is a wheeled motor vehicle used for transportation. Cars are a primary means of transportation " \
          "in many regions of the world. The year 1886 is regarded as the birth year of the car when German inventor " \
          "Karl Benz patented his Benz Patent"
-
 """
+
 # Getting the keywords
-keyword_response = openai.Completion.create(engine="davinci", prompt=output, temperature=0.3, max_tokens=60, top_p=1.0,
+keyword_response = openai.Completion.create(engine="davinci", prompt="Text: " + output + "Keywords:", temperature=0.3, max_tokens=60, top_p=1.0,
                                             frequency_penalty=0.8, presence_penalty=0.0, stop=["\n"])
 """
 keywords = "car, roads, Ford Motor Company, Karl Benz"
-
+"""
 # convert enumeration into list
-# keywords = keyword_response.choices[0].text
+keywords = keyword_response.choices[0].text
 keywords = keywords.split(",")
+print(keywords)
 
 # Delete download folder if it exists
 try:
