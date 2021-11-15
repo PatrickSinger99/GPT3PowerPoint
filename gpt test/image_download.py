@@ -10,4 +10,3 @@ def keywordPictures(List):
         arguments = {"keywords": i, "limit": 1, "print_urls": True, format:"jpg"}
         response.download(arguments)
 
-

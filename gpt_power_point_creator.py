@@ -7,14 +7,6 @@ from pptx.dml.color import RGBColor
 slide_height = Cm(19.05)
 slide_width = Cm(25.4)
 
-"""
-Standardgröße:
-Höhe = 19,05 cm
-Breite = 25,4 cm
-
-47,25 pixel per cm
-"""
-
 
 def add_picture_bottom_right(slide, img_path, margin=Cm(1), max_pic_height=Cm(14), max_pic_width=Cm(10),
                              slide_height=Cm(19.05), slide_width=Cm(25.4)):
@@ -56,37 +48,33 @@ def add_picture_bottom_right(slide, img_path, margin=Cm(1), max_pic_height=Cm(14
     return image
 
 
-# Create File and Slide
-prs = Presentation()
-slide = prs.slides.add_slide(prs.slide_layouts[1])
+def create_power_point_from_gpt(gpt_title, gpt_bulletpoints, gpt_picture):
 
-# Add Title
-title = slide.shapes.title
-title.text = "PowerPoint in Python"
+    # Create File and Slide
+    prs = Presentation()
+    slide = prs.slides.add_slide(prs.slide_layouts[1])
 
-title.text_frame.paragraphs[0].font.color.rgb = RGBColor(59, 89, 152)
-title.text_frame.paragraphs[0].font.bold = True
-title.text_frame.paragraphs[0].font.name = "Calibri Light"
+    # Add Title
+    title = slide.shapes.title
+    title.text = gpt_title
 
+    title.text_frame.paragraphs[0].font.color.rgb = RGBColor(59, 89, 152)
+    title.text_frame.paragraphs[0].font.bold = True
+    title.text_frame.paragraphs[0].font.name = "Calibri Light"
 
+    # Add Bulletpoints
+    subtitle = slide.placeholders[1]
+    subtitle.text = gpt_bulletpoints.replace(".", ".\n")
 
-# Add Bulletpoints
-subtitle = slide.placeholders[1]
-subtitle.text = "Verschiedene Testszenarien werden auf einem LabCar getestet.\n" \
-                "Check des RAM Verbrauchs, etc.\n" \
-                "Abschaltstrategien und SSP (Schnittstelle Sensor - Software und mehr)\n" \
-                "Status Test von Switches\n" \
-                "15 - 20 min"
+    for line in subtitle.text_frame.paragraphs:
+        line.font.size = Pt(25)
+        line.font.name = "Calibri Light"
 
-for line in subtitle.text_frame.paragraphs:
-    line.font.size = Pt(25)
-    line.font.name = "Calibri Light"
+    subtitle.width = Cm(12)
+    subtitle.height = Cm(19.05 - 5.2)
+    subtitle.top = Cm(4.2)
+    subtitle.left = Cm(1)
 
-subtitle.width = Cm(12)
-subtitle.height = Cm(19.05 - 5.2)
-subtitle.top = Cm(4.2)
-subtitle.left = Cm(1)
+    img = add_picture_bottom_right(slide, gpt_picture, max_pic_width=Cm(11))
 
-img = add_picture_bottom_right(slide, "test.PNG", max_pic_width=Cm(11))
-
-prs.save("test.pptx")
+    prs.save("gpt_power_point.pptx")
