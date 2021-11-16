@@ -7,13 +7,13 @@ import os
 import shutil
 
 # Input
-prompt = "An airplane or aeroplane (informally plane) is a fixed-wing aircraft that is propelled forward by thrust from a jet engine, propeller, or rocket engine. Airplanes come in a variety of sizes, shapes, and wing configurations. The broad spectrum of uses for airplanes includes recreation, transportation of goods and people, military, and research. Worldwide, commercial aviation transports more than four billion passengers annually on airliners[1] and transports more than 200 billion tonne-kilometers[2] of cargo annually, which is less than 1% of the world's cargo movement.[3] Most airplanes are flown by a pilot on board the aircraft, but some are designed to be remotely or computer-controlled such as drones."
+prompt = input("Prompt: ")
 
 # Openai key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Create model
-gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=50)
+gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=70)
 
 # Training the model with examples
 gpt_sum.add_example(Example("Napoleon III (Charles Louis Napoléon Bonaparte; 20 April 1808 – 9 January 1873) was the "
