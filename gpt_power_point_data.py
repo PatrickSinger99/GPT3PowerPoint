@@ -10,7 +10,7 @@ import shutil
 prompt = input("Prompt: ")
 
 # Openai key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=70)
