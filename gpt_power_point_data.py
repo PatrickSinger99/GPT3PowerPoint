@@ -5,9 +5,22 @@ from google_images_download import google_images_download
 import gpt_power_point_creator
 import os
 import shutil
+import wikipediaapi
 
-# Input
+#set wikipedia language
+wiki_wiki = wikipediaapi.Wikipedia(
+        language='en',
+        extract_format=wikipediaapi.ExtractFormat.WIKI
+)
+
+# Inputs
 prompt = input("Prompt: ")
+
+#define the wikipedia page
+p_wiki = wiki_wiki.page(prompt)
+
+#summary of the wikipedia page
+wiki_summary = p_wiki.summary
 
 # Openai key
 openai.api_key = "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"
@@ -60,7 +73,8 @@ gpt_sum.add_example(Example("A blockchain is a growing list of records, called b
                             "The data in any given block cannot be altered once recorded."
                             ))
 
-output = gpt_sum.submit_request(prompt)
+
+output = gpt_sum.submit_request(wiki_summary)
 output = output.choices[0].text[8:]
 print(output)
 """
