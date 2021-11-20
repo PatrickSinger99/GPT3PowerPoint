@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/PycharmProjectsWithVenvs/ANN/.idea/ANN.iml" filepath="$USER_HOME$/PycharmProjectsWithVenvs/ANN/.idea/ANN.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/GPT3PowerPoint.iml" filepath="$PROJECT_DIR$/.idea/GPT3PowerPoint.iml" />
     </modules>
   </component>
