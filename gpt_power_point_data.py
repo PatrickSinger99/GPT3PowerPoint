@@ -26,7 +26,10 @@ while True:
         break
 
 # Openai key
-openai.api_key = "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"
+with open("openai_key.txt") as file:
+    key = file.read()
+    openai.api_key = key
+    print(key)
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=70)
