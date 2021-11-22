@@ -7,23 +7,26 @@ import os
 import shutil
 import wikipediaapi
 
-#set wikipedia language
-wiki_wiki = wikipediaapi.Wikipedia(
-        language='en',
-        extract_format=wikipediaapi.ExtractFormat.WIKI
-)
+# Set wikipedia language
+wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
 
-# Inputs
-prompt = input("Prompt: ")
+# Get topic
+while True:
+    # Inputs
+    prompt = input("Topic: ")
 
-#define the wikipedia page
-p_wiki = wiki_wiki.page(prompt)
+    # Define the wikipedia page
+    p_wiki = wiki_wiki.page(prompt)
 
-#summary of the wikipedia page
-wiki_summary = p_wiki.summary
+    # Summary of the wikipedia page
+    wiki_summary = p_wiki.summary
+    print(wiki_summary)
+    verify = input("Do you want to summarize this text? (y/n): ")
+    if verify.lower() == "y":
+        break
 
 # Openai key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=70)
@@ -76,23 +79,24 @@ gpt_sum.add_example(Example("A blockchain is a growing list of records, called b
 
 output = gpt_sum.submit_request(wiki_summary)
 output = output.choices[0].text[8:]
-print(output)
-"""
-output = "A car is a wheeled motor vehicle used for transportation. Cars are a primary means of transportation " \
-         "in many regions of the world. The year 1886 is regarded as the birth year of the car when German inventor " \
-         "Karl Benz patented his Benz Patent"
-"""
+
+print("\nSummarized points:")
+for sentence in output.split("."):
+    print("    - " + sentence)
+
 
 # Getting the keywords
 keyword_response = openai.Completion.create(engine="davinci", prompt="Text: " + output + "Keywords:", temperature=0.3, max_tokens=60, top_p=1.0,
                                             frequency_penalty=0.8, presence_penalty=0.0, stop=["\n"])
-"""
-keywords = "car, roads, Ford Motor Company, Karl Benz"
-"""
+
+
 # convert enumeration into list
 keywords = keyword_response.choices[0].text
 keywords = keywords.split(",")
-print(keywords)
+
+print("\n Extracted keywords:")
+for keyword in keywords:
+    print("    - " + keyword)
 
 # Delete download folder if it exists
 try:

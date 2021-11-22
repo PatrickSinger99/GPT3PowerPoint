@@ -77,4 +77,4 @@ def create_power_point_from_gpt(gpt_title, gpt_bulletpoints, gpt_picture):
 
     img = add_picture_bottom_right(slide, gpt_picture, max_pic_width=Cm(11))
 
-    prs.save("gpt_power_point.pptx")
+    prs.save(gpt_title + ".pptx")
