@@ -1,3 +1,5 @@
 gpt_key.txt
 gpt_key.txt
 openai_key.txt
+.idea
+__pycache__
