@@ -7,6 +7,8 @@ import os
 import shutil
 import wikipediaapi
 
+max_len = 150
+
 # Set wikipedia language
 wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
 
@@ -20,6 +22,7 @@ while True:
 
     # Summary of the wikipedia page
     wiki_summary = p_wiki.summary
+    wiki_summary = wiki_summary.replace("\n", " ")
     print(wiki_summary)
     verify = input("Do you want to summarize this text? (y/n): ")
     if verify.lower() == "y":
@@ -29,7 +32,6 @@ while True:
 with open("openai_key.txt") as file:
     key = file.read()
     openai.api_key = key
-    print(key)
 
 # Create model
 gpt_sum = GPT(engine="davinci", temperature=.3, max_tokens=70)
@@ -79,10 +81,13 @@ gpt_sum.add_example(Example("A blockchain is a growing list of records, called b
                             "The data in any given block cannot be altered once recorded."
                             ))
 
-
+# Get GPT output
 output = gpt_sum.submit_request(wiki_summary)
 output = output.choices[0].text[8:]
-if len(output) > 280:
+
+# Crop if too long
+if len(output) > max_len:
+    output = output[:max_len]
     to_cut = ""
     for i in reversed(range(1, len(output))):
         if output[i] == ".":
@@ -90,9 +95,9 @@ if len(output) > 280:
             break
         to_cut = output[i] + to_cut
 
-
+# Print Points
 print("\nSummarized points:")
-for sentence in output.split("."):
+for sentence in output.split(". "):
     print("    - " + sentence)
 
 
