@@ -82,6 +82,14 @@ gpt_sum.add_example(Example("A blockchain is a growing list of records, called b
 
 output = gpt_sum.submit_request(wiki_summary)
 output = output.choices[0].text[8:]
+if len(output) > 280:
+    to_cut = ""
+    for i in reversed(range(1, len(output))):
+        if output[i] == ".":
+            output = output.replace(to_cut, "")
+            break
+        to_cut = output[i] + to_cut
+
 
 print("\nSummarized points:")
 for sentence in output.split("."):
