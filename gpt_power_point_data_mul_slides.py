@@ -51,6 +51,10 @@ while True:
         wiki_dict.pop("Further reading")
     except:
         pass
+    try:
+        wiki_dict.pop("Notes")
+    except:
+        pass
 
     new_wiki_dict = {}
     slide_num = 0
