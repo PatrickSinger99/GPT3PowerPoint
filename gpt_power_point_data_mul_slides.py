@@ -25,7 +25,10 @@ while True:
         dict = {}
         dict[page.title] = page.summary
         for s in page.sections:
-            dict[s.title] = s.text
+            if s.text != "":
+                dict[s.title] = s.text
+            else:
+                dict[s.title] = s.sections[0].text
         return dict
 
     wiki_dict = create_dict(p_wiki)
