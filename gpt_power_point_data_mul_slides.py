@@ -41,6 +41,10 @@ while True:
         wiki_dict.pop("External links")
     except:
         pass
+    try:
+        wiki_dict.pop("Further reading")
+    except:
+        pass
 
     new_wiki_dict = {}
     slide_num = 0
