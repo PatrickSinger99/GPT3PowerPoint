@@ -106,7 +106,7 @@ except FileNotFoundError:
 
 # Download an image for the keyword
 response = google_images_download.googleimagesdownload()
-arguments = {"keywords": prompt, "limit": max_slide_num, "print_urls": True, format: "jpg"}
+arguments = {"keywords": prompt, "limit": max_slide_num+2, "print_urls": True, format: "jpg"}
 response.download(arguments)
 
 
