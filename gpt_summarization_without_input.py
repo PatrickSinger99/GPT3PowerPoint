@@ -74,6 +74,7 @@ try:
 except FileNotFoundError:
     pass
 
+
 # Download an image to the keyword
 response = google_images_download.googleimagesdownload()
 arguments = {"keywords": keyword, "limit": 1, "print_urls": True, format: "jpg"}

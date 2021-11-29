@@ -57,7 +57,7 @@ def add_picture_bottom_right(slide, img_path, margin=Cm(1), max_pic_height=Cm(14
     return image
 
 
-def create_power_point_slides_from_gpt(dictionary):
+def create_power_point_slides_from_gpt(dictionary, img_dict, pp_title):
 
     # Create File and Slide
     prs = Presentation()
@@ -86,33 +86,8 @@ def create_power_point_slides_from_gpt(dictionary):
         subtitle.left = Cm(1)
 
         try:
-            # Getting the keywords
-            keyword_response = openai.Completion.create(engine="davinci", prompt="Text: " + dictionary[key] + "Keywords:",
-                                                        temperature=0.3, max_tokens=60, top_p=1.0,
-                                                        frequency_penalty=0.8, presence_penalty=0.0, stop=["\n"])
-
-            # convert enumeration into list
-            keywords = keyword_response.choices[0].text
-            keywords = keywords.split(",")
-            img_keyword = keywords[0]
-
-            # Download an image for the keyword
-            response = google_images_download.googleimagesdownload()
-            arguments = {"keywords": img_keyword, "limit": 1, "print_urls": True, format: "jpg"}
-            response.download(arguments)
-
-            # Create path to image
-            pic_path = "downloads/" + img_keyword + "/" + os.listdir("downloads/" + img_keyword)[0]
-
-            img = add_picture_bottom_right(slide, pic_path, max_pic_width=Cm(11))
+            img = add_picture_bottom_right(slide, img_dict[key], max_pic_width=Cm(11))
         except:
             pass
 
-
-    # Delete download folder if it exists
-    try:
-        shutil.rmtree('downloads')
-    except FileNotFoundError:
-        pass
-
-    prs.save("mul_slides_test.pptx")
+    prs.save(pp_title + "_mul_slides.pptx")
