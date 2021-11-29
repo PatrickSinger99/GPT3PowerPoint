@@ -11,6 +11,11 @@ import shutil
 slide_height = Cm(19.05)
 slide_width = Cm(25.4)
 
+# Openai key
+with open("openai_key.txt") as file:
+    key = file.read()
+    openai.api_key = key
+
 
 def add_picture_bottom_right(slide, img_path, margin=Cm(1), max_pic_height=Cm(14), max_pic_width=Cm(10),
                              slide_height=Cm(19.05), slide_width=Cm(25.4)):
@@ -80,25 +85,29 @@ def create_power_point_slides_from_gpt(dictionary):
         subtitle.top = Cm(4.2)
         subtitle.left = Cm(1)
 
-        # Getting the keywords
-        keyword_response = openai.Completion.create(engine="davinci", prompt="Text: " + dictionary[key] + "Keywords:",
-                                                    temperature=0.3, max_tokens=60, top_p=1.0,
-                                                    frequency_penalty=0.8, presence_penalty=0.0, stop=["\n"])
+        try:
+            # Getting the keywords
+            keyword_response = openai.Completion.create(engine="davinci", prompt="Text: " + dictionary[key] + "Keywords:",
+                                                        temperature=0.3, max_tokens=60, top_p=1.0,
+                                                        frequency_penalty=0.8, presence_penalty=0.0, stop=["\n"])
 
-        # convert enumeration into list
-        keywords = keyword_response.choices[0].text
-        keywords = keywords.split(",")
-        img_keyword = keywords[0]
+            # convert enumeration into list
+            keywords = keyword_response.choices[0].text
+            keywords = keywords.split(",")
+            img_keyword = keywords[0]
 
-        # Download an image for the keyword
-        response = google_images_download.googleimagesdownload()
-        arguments = {"keywords": img_keyword, "limit": 1, "print_urls": True, format: "jpg"}
-        response.download(arguments)
+            # Download an image for the keyword
+            response = google_images_download.googleimagesdownload()
+            arguments = {"keywords": img_keyword, "limit": 1, "print_urls": True, format: "jpg"}
+            response.download(arguments)
 
-        # Create path to image
-        pic_path = "downloads/" + img_keyword + "/" + os.listdir("downloads/" + img_keyword)[0]
+            # Create path to image
+            pic_path = "downloads/" + img_keyword + "/" + os.listdir("downloads/" + img_keyword)[0]
 
-        img = add_picture_bottom_right(slide, pic_path, max_pic_width=Cm(11))
+            img = add_picture_bottom_right(slide, pic_path, max_pic_width=Cm(11))
+        except:
+            pass
+
 
     # Delete download folder if it exists
     try:
