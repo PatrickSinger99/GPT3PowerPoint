@@ -7,7 +7,7 @@ import os
 import shutil
 
 max_len = 150  # Max length of the Bullet Points
-max_slide_num = 5
+max_slide_num = 10
 
 # Set wikipedia language
 wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
@@ -25,10 +25,13 @@ while True:
         dict = {}
         dict[page.title] = page.summary
         for s in page.sections:
-            if s.text != "":
-                dict[s.title] = s.text
-            else:
-                dict[s.title] = s.sections[0].text
+            dict[s.title] = s.text
+
+            try:
+                if s.text == "":
+                    dict[s.title] = s.sections[0].text
+            except:
+                pass
         return dict
 
     wiki_dict = create_dict(p_wiki)
