@@ -7,7 +7,7 @@ import os
 import shutil
 
 max_len = 150  # Max length of the Bullet Points
-max_slide_num = 10
+max_slide_num = 5
 
 # Set wikipedia language
 wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
