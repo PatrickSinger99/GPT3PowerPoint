@@ -31,5 +31,6 @@ gpt_point_creation.add_example(Example("germany",
 def create_text_from_topic(prompt):
     output = gpt_point_creation.submit_request(prompt)
     text_output = output.choices[0].text[8:]
+    text_output = text_output.strip()
     print("GPT-3 generated Text:\n" + text_output)
     return text_output

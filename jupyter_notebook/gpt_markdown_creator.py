@@ -1,4 +1,5 @@
 from gpt_content_creator import create_text_from_topic
+from gpt_subtopic_creator import create_subtopics_from_topic
 from gpt import GPT
 import openai
 from gpt import Example
@@ -36,13 +37,6 @@ with open("openai_key.txt") as file:
     key = file.read()
     openai.api_key = key
 
-# Get topic from user and call create_text_from_topic function which generates bulletpoints from the topic
-prompt = input("Topic: ")
-content = create_text_from_topic(prompt)
-
-# Convert topic and bulletpoints to format for the html GPT model
-content_input = "Heading: " + prompt + " Text: " + content
-
 # GPT model to create html code from heading and bulletpoints
 gpt_markdown_creation = GPT(engine="davinci", temperature=.5, max_tokens=120)
 
@@ -63,8 +57,53 @@ gpt_markdown_creation.add_example(Example("Heading: Etymology and naming Text: T
                                         ))
 
 
-# Create html Code from GPT Model and create presentation
-output = gpt_markdown_creation.submit_request(content_input)
-section_html = output.choices[0].text[8:]
-print("GPT-3 generated html:\n" + section_html)
-create_markdown_presentation([section_html])
+# Get topic from user
+prompt = input("Topic: ")
+
+
+# Get subtopics from topic
+subtopics = create_subtopics_from_topic(prompt)
+subtopics = subtopics.split(", ")
+
+subtopics_list = [prompt]
+for i in subtopics:
+    subtopics_list.append(i.strip())
+
+if len(subtopics_list) > 5:
+    subtopics_list = subtopics_list[:4]
+
+print("GPT-3 generated subtopics:\n", subtopics_list)
+
+
+# Get text for every subtopic
+section_list = []
+for topic in subtopics_list:
+
+    if prompt not in topic:
+        topic = prompt + " " + topic
+
+    print("\n" + topic)
+    print("---------------")
+
+    content = create_text_from_topic(topic)
+
+    # Clean up content output
+    content.replace("\"", "")
+    content.replace("output:", "")
+
+    # Convert topic and bulletpoints to format for the html GPT model
+    content_input = "Heading: " + topic + " Text: " + content
+
+    # Create html Code from GPT Model and create presentation
+    output = gpt_markdown_creation.submit_request(content_input)
+
+    # clean up output code
+    section_html = output.choices[0].text[8:]
+    section_html.replace("output:", "")
+    section_html = section_html.strip()
+    section_html = section_html.split("</section>")[0] + "</section>"
+
+    print("GPT-3 generated html:\n" + section_html)
+    section_list.append(section_html)
+
+create_markdown_presentation(section_list)

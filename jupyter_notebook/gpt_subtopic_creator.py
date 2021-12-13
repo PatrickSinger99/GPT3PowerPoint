@@ -31,7 +31,6 @@ gpt_point_creation.add_example(Example("germany",
 def create_subtopics_from_topic(prompt):
     output = gpt_point_creation.submit_request(prompt)
     text_output = output.choices[0].text[8:]
-    print("GPT-3 generated subtopics:\n" + text_output)
     return text_output
 
 #print(create_subtopics_from_topic("computer"))
