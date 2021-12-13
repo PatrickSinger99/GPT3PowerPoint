@@ -28,11 +28,10 @@ gpt_point_creation.add_example(Example("germany",
 
 
 # Create Text (Bulletpoints) from a topic
-def create_text_from_topic(prompt):
+def create_subtopics_from_topic(prompt):
     output = gpt_point_creation.submit_request(prompt)
     text_output = output.choices[0].text[8:]
-    einzeldaten = text_output.split(",")
     print("GPT-3 generated subtopics:\n" + text_output)
-    return einzeldaten
+    return text_output
 
-create_text_from_topic("network")
+#print(create_subtopics_from_topic("computer"))
