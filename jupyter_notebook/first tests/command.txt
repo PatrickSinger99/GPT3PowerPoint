@@ -1,0 +1,1 @@
+jupyter nbconvert test.ipynb --to slides --post serve
