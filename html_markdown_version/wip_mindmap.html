@@ -30,7 +30,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
     }
 
     .topic {
-         transform: translate(385px, 120px);
+         transform: translate(400px, 110px);
          border: 2px solid #2E2E2E;
          border-radius: 20px;
          width: 150px;
@@ -42,15 +42,15 @@ if( window.location.search.match( /print-pdf/gi ) ) {
          font-size: 14px;
     }
 
-    .subtopics {
-         display: flex;
-         flex-wrap: wrap;
-         flex-basis: 30%;
-         justify-content: space-between;
-         align-content: stretch;
+    .mindmap-subtopics {
+         display: flex !important;
+         flex-wrap: wrap !important;
+         flex-basis: 30% !important;
+         justify-content: space-between !important;
+         align-content: stretch !important;
     }
 
-    ul > li {
+    .mindmap-list {
          width: 200px;
          text-align: center;
          list-style: none;
@@ -62,9 +62,10 @@ if( window.location.search.match( /print-pdf/gi ) ) {
          font-size: 14px;
     }
 
-    .buff{
+    .buff {
         border: solid 0px;
         opacity: 0;
+        width: 200px;
     }
 
     hr {
@@ -74,12 +75,12 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         border-radius: 5px;
     }
 
-    #line1 { transform:rotate(25deg); top: 100px; left: 290px; margin-left: 5px; }
-    #line2 { transform:rotate(-25deg); top: 100px; left: 575px; margin-right: 5px; }
-    #line3 { transform:rotate(0deg); top: 140px; left: 285px; margin-left: 5px; }
-    #line4 { transform:rotate(0deg); top: 140px; left: 580px; margin-right: 5px; }
-    #line5 { transform:rotate(-25deg); top: 175px; left: 290px; margin-left: 5px; }
-    #line6 { transform:rotate(25deg); top: 175px; left: 575px; margin-right: 5px; }
+    #line1 { transform:rotate(25deg); top: 290px; left: 320px; margin-left: 5px; }
+    #line2 { transform:rotate(-25deg); top: 290px; left: 590px; margin-right: 5px; }
+    #line3 { transform:rotate(0deg); top: 330px; left: 315px; margin-left: 5px; }
+    #line4 { transform:rotate(0deg); top: 330px; left: 595px; margin-right: 5px; }
+    #line5 { transform:rotate(-25deg); top: 365px; left: 320px; margin-left: 5px; }
+    #line6 { transform:rotate(25deg); top: 365px; left: 590px; margin-right: 5px; }
 
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -14693,22 +14694,22 @@ div.jp-OutputPrompt {
       <div class="topic">
           Super long topic
       </div>
-      <ul class="subtopics">
-          <li>Short</li>
+      <ul class="mindmap-subtopics">
+          <li class="mindmap-list">Short</li>
               <hr id="line1">
           <li class="buff"></li>
               <hr id="line2">
-          <li>Super duper long subtopic</li>
-          <li>Super duper long subtopic</li>
+          <li class="mindmap-list">Super duper long subtopic</li>
+          <li class="mindmap-list">Super duper long subtopic</li>
               <hr id="line3">
           <li class="buff"></li>
               <hr id="line4">
-          <li>Short</li>
-          <li>Super duper long subtopic</li>
+          <li class="mindmap-list">Short</li>
+          <li class="mindmap-list">Super duper long subtopic</li>
               <hr id="line5">
           <li class="buff"></li>
               <hr id="line6">
-          <li>Super duper long subtopic</li>
+          <li class="mindmap-list">Super duper long subtopic</li>
       </ul>
   </div>
   
