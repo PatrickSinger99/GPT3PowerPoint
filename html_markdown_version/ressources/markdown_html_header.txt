@@ -23,6 +23,66 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 </script>
 
 <style type="text/css">
+
+.mindmap-container {
+         width: 1150px;
+         height: 400px;
+    }
+
+    .topic {
+         transform: translate(400px, 110px);
+         border: 2px solid #2E2E2E;
+         border-radius: 20px;
+         width: 150px;
+         text-align: center;
+         padding: 10px;
+         background-color: #2E2E2E;
+         color: white;
+         font-family: sans-serif;
+         font-size: 14px;
+    }
+
+    .mindmap-subtopics {
+         display: flex !important;
+         flex-wrap: wrap !important;
+         flex-basis: 30% !important;
+         justify-content: space-between !important;
+         align-content: stretch !important;
+    }
+
+    .mindmap-list {
+         width: 200px;
+         text-align: center;
+         list-style: none;
+         margin: 10px;
+         padding: 10px;
+         border-radius: 20px;
+         background-color: #F5ECCE;
+         font-family: sans-serif;
+         font-size: 14px;
+    }
+
+    .buff {
+        border: solid 0px;
+        opacity: 0;
+        width: 200px;
+    }
+
+    hr {
+        width: 6%;
+        position: absolute;
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+
+    #line1 { transform:rotate(25deg); top: 290px; left: 320px; margin-left: 5px; }
+    #line2 { transform:rotate(-25deg); top: 290px; left: 590px; margin-right: 5px; }
+    #line5 { transform:rotate(0deg); top: 330px; left: 315px; margin-left: 5px; }
+    #line6 { transform:rotate(0deg); top: 330px; left: 595px; margin-right: 5px; }
+    #line9 { transform:rotate(-25deg); top: 365px; left: 320px; margin-left: 5px; }
+    #line10 { transform:rotate(25deg); top: 365px; left: 590px; margin-right: 5px; }
+    #line3, #line4, #line7, #line8, #line11, #line12 { display: none; }
+
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
