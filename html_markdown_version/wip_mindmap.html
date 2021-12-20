@@ -25,7 +25,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 <style type="text/css">
 
 .mindmap-container {
-         width: 900px;
+         width: 1150px;
          height: 400px;
     }
 
@@ -77,10 +77,11 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     #line1 { transform:rotate(25deg); top: 290px; left: 320px; margin-left: 5px; }
     #line2 { transform:rotate(-25deg); top: 290px; left: 590px; margin-right: 5px; }
-    #line3 { transform:rotate(0deg); top: 330px; left: 315px; margin-left: 5px; }
-    #line4 { transform:rotate(0deg); top: 330px; left: 595px; margin-right: 5px; }
-    #line5 { transform:rotate(-25deg); top: 365px; left: 320px; margin-left: 5px; }
-    #line6 { transform:rotate(25deg); top: 365px; left: 590px; margin-right: 5px; }
+    #line5 { transform:rotate(0deg); top: 330px; left: 315px; margin-left: 5px; }
+    #line6 { transform:rotate(0deg); top: 330px; left: 595px; margin-right: 5px; }
+    #line9 { transform:rotate(-25deg); top: 365px; left: 320px; margin-left: 5px; }
+    #line10 { transform:rotate(25deg); top: 365px; left: 590px; margin-right: 5px; }
+    #line3, #line4, #line7, #line8, #line11, #line12 { display: none; }
 
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -14696,20 +14697,40 @@ div.jp-OutputPrompt {
       </div>
       <ul class="mindmap-subtopics">
           <li class="mindmap-list">Short</li>
-              <hr id="line1">
+
+          <hr id="line1">
           <li class="buff"></li>
-              <hr id="line2">
+          <hr id="line2">
+
           <li class="mindmap-list">Super duper long subtopic</li>
-          <li class="mindmap-list">Super duper long subtopic</li>
-              <hr id="line3">
+
+          <hr id="line3">
           <li class="buff"></li>
-              <hr id="line4">
+          <hr id="line4">
+
+          <li class="mindmap-list">Super duper long subtopic</li>
+
+          <hr id="line5">
+          <li class="buff"></li>
+          <hr id="line6">
+
           <li class="mindmap-list">Short</li>
-          <li class="mindmap-list">Super duper long subtopic</li>
-              <hr id="line5">
+
+          <hr id="line7">
           <li class="buff"></li>
-              <hr id="line6">
+          <hr id="line8">
+
           <li class="mindmap-list">Super duper long subtopic</li>
+
+          <hr id="line9">
+          <li class="buff"></li>
+          <hr id="line10">
+
+          <li class="mindmap-list">Super duper long subtopic</li>
+
+          <hr id="line11">
+          <li class="buff"></li>
+          <hr id="line12">
       </ul>
   </div>
   
