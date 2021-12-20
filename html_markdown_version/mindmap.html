@@ -1,0 +1,83 @@
+<div class="mindmap-container">
+    <div class="topic">
+        Super long topic
+    </div>
+    <ul class="subtopics">
+        <li>Short</li>
+            <hr id="line1">
+        <li class="buff"></li>
+            <hr id="line2">
+        <li>Super duper long subtopic</li>
+        <li>Super duper long subtopic</li>
+            <hr id="line3">
+        <li class="buff"></li>
+            <hr id="line4">
+        <li>Short</li>
+        <li>Super duper long subtopic</li>
+            <hr id="line5">
+        <li class="buff"></li>
+            <hr id="line6">
+        <li>Super duper long subtopic</li>
+    </ul>
+</div>
+
+<style>
+
+    .mindmap-container {
+         width: 900px;
+         height: 400px;
+    }
+
+    .topic {
+         transform: translate(385px, 120px);
+         border: 2px solid #2E2E2E;
+         border-radius: 20px;
+         width: 150px;
+         text-align: center;
+         padding: 10px;
+         background-color: #2E2E2E;
+         color: white;
+         font-family: sans-serif;
+         font-size: 14px;
+    }
+
+    .subtopics {
+         display: flex;
+         flex-wrap: wrap;
+         flex-basis: 30%;
+         justify-content: space-between;
+         align-content: stretch;
+    }
+
+    ul > li {
+         width: 200px;
+         text-align: center;
+         list-style: none;
+         margin: 10px;
+         padding: 10px;
+         border-radius: 20px;
+         background-color: #F5ECCE;
+         font-family: sans-serif;
+         font-size: 14px;
+    }
+
+    .buff{
+        border: solid 0px;
+        opacity: 0;
+    }
+
+    hr {
+        width: 6%;
+        position: absolute;
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+
+    #line1 { transform:rotate(25deg); top: 100px; left: 290px; margin-left: 5px; }
+    #line2 { transform:rotate(-25deg); top: 100px; left: 575px; margin-right: 5px; }
+    #line3 { transform:rotate(0deg); top: 140px; left: 285px; margin-left: 5px; }
+    #line4 { transform:rotate(0deg); top: 140px; left: 580px; margin-right: 5px; }
+    #line5 { transform:rotate(-25deg); top: 175px; left: 290px; margin-left: 5px; }
+    #line6 { transform:rotate(25deg); top: 175px; left: 575px; margin-right: 5px; }
+
+</style>
